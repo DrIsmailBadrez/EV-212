@@ -10,9 +10,46 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_05_115725) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_05_130120) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "chargers", force: :cascade do |t|
+    t.string "type"
+    t.integer "capacity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.text "content"
+    t.float "rating"
+    t.bigint "user_id", null: false
+    t.bigint "station_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["station_id"], name: "index_reviews_on_station_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
+
+  create_table "station_chargers", force: :cascade do |t|
+    t.bigint "charger_id", null: false
+    t.bigint "station_id", null: false
+    t.integer "charger_count"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["charger_id"], name: "index_station_chargers_on_charger_id"
+    t.index ["station_id"], name: "index_station_chargers_on_station_id"
+  end
+
+  create_table "stations", force: :cascade do |t|
+    t.string "name"
+    t.text "address"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_stations_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -26,4 +63,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_05_115725) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "reviews", "stations"
+  add_foreign_key "reviews", "users"
+  add_foreign_key "station_chargers", "chargers"
+  add_foreign_key "station_chargers", "stations"
+  add_foreign_key "stations", "users"
 end
