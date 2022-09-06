@@ -29,10 +29,11 @@ class StationsController < ApplicationController
   # POST /stations or /stations.json
   def create
     @station = Station.new(station_params)
+    @station.user = current_user
 
     respond_to do |format|
       if @station.save
-        format.html { redirect_to station_url(@station), notice: "Station was successfully created." }
+        format.html { redirect_to stations_path, notice: "Station was successfully created." }
         format.json { render :show, status: :created, location: @station }
       else
         format.html { render :new, status: :unprocessable_entity }

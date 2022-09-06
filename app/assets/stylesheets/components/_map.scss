@@ -1,0 +1,18 @@
+.mapboxgl-popup {
+  max-width: 200px;
+}
+
+.mapboxgl-popup-content {
+  text-align: center;
+  font-family: "Open Sans", sans-serif;
+}
+
+.mapboxgl-ctrl-geocoder {
+  right: 13%;
+}
+
+.mapboxgl-ctrl-group {
+  position: absolute;
+  top: 10px;
+  left: 88%;
+}
