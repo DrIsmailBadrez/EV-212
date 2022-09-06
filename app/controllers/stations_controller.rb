@@ -4,6 +4,12 @@ class StationsController < ApplicationController
   # GET /stations or /stations.json
   def index
     @stations = Station.all
+    @markers = @stations.geocoded.map do |station|
+      {
+        lat: station.latitude,
+        lng: station.longitude
+      }
+    end
   end
 
   # GET /stations/1 or /stations/1.json
