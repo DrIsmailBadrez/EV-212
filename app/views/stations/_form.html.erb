@@ -1,9 +1,11 @@
 
+  <div data-controller="select2" >
   <%= simple_form_for(@station) do |f| %>
     <%= f.error_notification %>
     <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
     <div class="form-inputs">
+
       <%= f.input :name, label: false,
                     required: true,
                     autofocus: true,
@@ -12,9 +14,22 @@
                     required: true,
                     autofocus: true,
                     input_html: { autocomplete: "Address", placeholder:"Address"}  %>
+      <%= f.input :photo, as: :file,
+                    label: false,
+                    required: true,
+                    autofocus: true,
+                    input_html: { placeholder:"Photo"}  %>
+
+      <select id="list-chargers" data-select2-target="list" name="charger[]" multiple="multiple">
+      <%= Charger.all.each do |charger| %>
+        <option value="<%=charger.id%>"><%= charger.ctype %> <%= charger.capacity %></option>
+        <% end %>
+      </select>
     </div>
 
-    <div class="form-actions text-center">
-      <%= f.button :submit, "Submit", class:"btn-primary w-50 rounded-pill" %>
+    <div class="form-actions text-center" >
+      <%= f.button :submit, "Submit", class:"btn btn-primary w-50 rounded-pill" %>
     </div>
   <% end %>
+
+  </div>

@@ -1,6 +1,6 @@
 <div class="container">
   <div class="logo-profile">
-    <img src="https://i.ibb.co/Chv9jZ7/EV-212-4.gif"  alt="EV-212" width="200px" height="200px">
+    <a href="/"><img src="https://i.ibb.co/Chv9jZ7/EV-212-4.gif"  alt="EV-212" width="200px" height="200px"></a>
   </div>
   <div class="text-center">
     <img class= "pic-profile" src="https://wikibio.in/wp-content/uploads/2021/12/Hasbulla.jpg"  alt="profile-pic" width="130px" height="130px">
@@ -10,6 +10,6 @@
     <a href="<%=edit_user_registration_path%>" class="btn btn-primary">Edit my infos</a>
   </div>
   <div class="text-center mt-3">
-    <a href="" class="btn btn-danger text-white">Log out</a>
+    <a href="/users/sign_out" data-turbo-method="delete" class="btn btn-danger text-white">Log out</a>
   </div>
 </div>

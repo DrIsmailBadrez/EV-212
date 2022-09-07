@@ -1,2 +1,21 @@
 <h2><%= station.name %></h2>
 <p><%= station.address %></p>
+<%= cl_image_tag station.photo.key, height: 100, width: 100, crop: :fill %>
+<br>
+<%= link_to "Leave a review", new_station_review_path(station)%>
+    <hr>
+    <h5>Chargers available:</h5>
+    <% station.chargers.each do |charger| %>
+      <p><%= charger.id %>-<%= charger.ctype %>-<%= charger.capacity %></p>
+    <% end %>
+<% if !station.reviews.empty? %>
+  <% station.reviews.each do |review| %>
+    <p class="mb-0"><b>Review N°</b><%= review.id %></p>
+    <p class="mb-0"><b>Comment:</b><%= review.content %></p>
+    <p class="mb-0"><b>Rating:</b><%= review.rating %></p>
+    <% if review.photo.key? %>
+      <%= cl_image_tag review.photo.key, height: 50, width: 50, crop: :fill %>
+    <% end %>
+    <hr>
+  <% end %>
+<% end %>
