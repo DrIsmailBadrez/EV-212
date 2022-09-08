@@ -32,14 +32,15 @@ class StationsController < ApplicationController
   def create
     @station = Station.new(station_params)
     @station.user = current_user
-
     respond_to do |format|
       if @station.save
         chargers = params["charger"]
-        chargers.each do |charger_id|
+        charger_count = params["charger_count"]
+        chargers.each_with_index do |charger_id, index|
           @station_charger = StationCharger.new
           @station_charger.station = @station
           @station_charger.charger_id = charger_id
+          @station_charger.charger_count = charger_count[index]
           @station_charger.save
         end
         format.html { redirect_to stations_path, notice: "Station was successfully created." }

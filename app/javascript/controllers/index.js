@@ -4,11 +4,11 @@
 
 import { application } from "./application"
 
-import Select2Controller from "./select2_controller"
-application.register("select2", Select2Controller)
-
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
+
+import InsertInFormController from "./insert_in_form_controller"
+application.register("insert-in-form", InsertInFormController)
 
 import MapController from "./map_controller"
 application.register("map", MapController)
