@@ -1,5 +1,9 @@
 class ReviewsController < ApplicationController
-  before_action :set_station, only: %i[new create]
+  before_action :set_station, only: %i[index new create]
+
+  def index
+    @reviews = @station.reviews
+  end
 
   def new
     @review = Review.new

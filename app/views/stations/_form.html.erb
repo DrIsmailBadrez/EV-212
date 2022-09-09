@@ -30,7 +30,7 @@
                   <option value="<%=charger.id%>"><%= image_tag(charger.ctype+".png", style:"width:50px; height:50px")%><%= charger.ctype %> - <%= charger.capacity %>kW</option>
                   <% end %>
               </select>
-                <input class="form-group col-2" type="number" id="charger_count" name="charger_count[]" placeholder="x 1" min="1" step="1">
+                x <input data-insert-in-form-target="count" class="form-group col-2" type="number" id="charger_count" name="charger_count[]" default="1" placeholder="1" min="1" step="1">
             </div>
           </div>
           <div class="form-actions text-center" data-insert-in-form-target="button">

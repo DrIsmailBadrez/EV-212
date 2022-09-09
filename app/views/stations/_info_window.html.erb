@@ -1,14 +1,50 @@
-<h2><%= station.name %></h2>
+<% if !station.reviews.empty? %>
+  <% note = 0 %>
+  <% station.reviews.each do |review| %>
+    <% note += review.rating  %>
+  <% end %>
+  <% average = note.fdiv((station.reviews).size) %>
+<% end %>
+
+<span>
+  <h2><%= station.name %></h2>
+  <% if !average.nil? %>
+    <% if average.integer? %>
+      <h6><% average.times do  %>
+            <i class='fa-sharp fa-solid fa-star' style="color: #ffcd3c;"></i>
+          <% end %>
+          <% (5 - average).times do %>
+            <i class='fa-regular fa-star' style="color: #ffcd3c;"></i>
+          <% end %>
+          (<%= (station.reviews).size %>)
+      </h6>
+    <% else %>
+      <h6><% average.to_i.times do  %>
+            <i class='fa-sharp fa-solid fa-star' style="color: #ffcd3c;"></i>
+          <% end %>
+            <i class="fa-solid fa-star-sharp-half-stroke" style="color: #ffcd3c;"></i>
+          <% (4 - average.to_i).times do %>
+            <i class='fa-regular fa-star' style="color: #ffcd3c;"></i>
+          <% end %>
+          (<%= (station.reviews).size %>)
+      </h6>
+    <% end %>
+  <% end %>
+</span>
 <p><%= station.address %></p>
 <%= cl_image_tag station.photo.key, height: 100, width: 100, crop: :fill %>
 <br>
 <%= link_to "Leave a review", new_station_review_path(station)%>
+<%= link_to "See all reviews", station_reviews_path(station)%>
     <hr>
     <h5>Chargers available:</h5>
     <% station.station_chargers.each do |station_charger| %>
       <li style="list-style: none"><%= image_tag(station_charger.charger.ctype+".png", style:"width:50px; height:50px")%>
       <span style="display: inline-block; min-width: 66px;"><%= station_charger.charger.capacity %>kW<b> x <%= station_charger.charger_count %></b></span></li>
     <% end %>
+
+
+
 <% if !station.reviews.empty? %>
   <% station.reviews.each do |review| %>
     <p class="mb-0"><b>Review N°</b><%= review.id %></p>

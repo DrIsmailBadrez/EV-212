@@ -1,0 +1,21 @@
+<% if @reviews.empty? %>
+  <h2>Still no reviews...</h2>
+<% else %>
+  <% @reviews.each do |review| %>
+  <span>
+    <p class="mb-0"><b>Review N°</b><%= review.id %></p>
+              <h6><% review.rating.to_i.times do  %>
+            <i class='fa-sharp fa-solid fa-star' style="color: #ffcd3c;"></i>
+          <% end %>
+          <% (5 - review.rating.to_i).times do %>
+            <i class='fa-regular fa-star' style="color: #ffcd3c;"></i>
+          <% end %>
+          </h6>
+  </span>
+    <p class="mb-0"><b>Comment:</b><%= review.content %></p>
+    <% if review.photo.key? %>
+      <%= cl_image_tag review.photo.key, height: 50, width: 50, crop: :fill %>
+    <% end %>
+    <hr>
+  <% end %>
+<% end %>
