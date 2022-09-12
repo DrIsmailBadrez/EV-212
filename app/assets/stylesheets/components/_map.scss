@@ -16,3 +16,43 @@
   top: 10px;
   left: 88%;
 }
+
+.mapboxgl-popup-content{
+  display: none;
+  position:absolute;
+  width: 390px;
+  top: 120px;
+  left:0;
+  // transition: all 2s;
+  // &:hover, :focus, :target{
+  //   top:5px;
+  // }
+}
+
+.mapboxgl-popup-tip{
+  display: none;
+}
+
+#popup {
+  width: 388px;
+  height: 700px;
+  position: absolute;
+  top: 500px;
+  background-color: white;
+  padding: 16px;
+  padding-top: 32px;
+  transition: all 1s;
+}
+
+#drawer{
+  width: 102px;
+  border-top: 4px solid grey;
+  border-radius: 4px;
+  margin: 0 auto;
+  display: block;
+}
+
+
+.mapboxgl-ctrl-bottom-left, .mapboxgl-ctrl-bottom-right{
+  display: none;
+}

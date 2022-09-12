@@ -4,3 +4,7 @@
   data-controller="map"
   data-map-markers-value="<%= @markers.to_json %>"
   data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+
+
+<div class="d-none" style="top: 500px;" id="popup"></div>
+ <%= render "shared/navbar" %>

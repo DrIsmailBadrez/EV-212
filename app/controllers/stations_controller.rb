@@ -8,7 +8,9 @@ class StationsController < ApplicationController
       {
         lat: station.latitude,
         lng: station.longitude,
-        info_window: render_to_string(partial: "info_window", locals: { station: station })
+        info_window: render_to_string(partial: "info_window", locals: { station: station }),
+        station_id: station.id,
+        image_url: helpers.asset_url("marker.svg")
       }
     end
   end
