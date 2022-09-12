@@ -1,12 +1,14 @@
 <div class="container p-4">
-  <h2 class="text-center">Log in</h2>
+<div class="logo-profile text-center">
+    <img src="https://i.ibb.co/Chv9jZ7/EV-212-4.gif"  alt="EV-212" width="350px" height="350px">
+  </div>
 
   <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: :false }) do |f| %>
     <div class="form-inputs mt-5 mb-5">
       <%= f.input :email,
                   label: false,
                   required: false,
-                  autofocus: true,
+                  # autofocus: true,
                   input_html: { autocomplete: "email", placeholder:"Email" } %>
       <%= f.input :password,
                   label: false,
@@ -20,6 +22,7 @@
     </div>
   <% end %>
   <div class=" text-center">
+  <br>
     <%= render "devise/shared/links" %>
   </div>
 </div>

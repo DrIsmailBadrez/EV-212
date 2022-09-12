@@ -32,14 +32,37 @@ export default class extends Controller {
         showUserHeading: true
         })
         );
+    const popup = document.getElementById("popup");
+    document.querySelector(".mymap").addEventListener("click", () =>{
+      const hasDnone = popup.classList.contains('d-none');
+      if(!hasDnone)
+        popup.classList.add("d-none");
+    })
+    popup.addEventListener("click", () =>{
+      popup.style = popup.getAttribute("style") == "top: 50px;" ?  "top: 500px;" : "top: 50px;";
+    })
+    document.querySelectorAll('.mapboxgl-marker')
+    .forEach((marker)=>{
+      marker.addEventListener('click', (event) =>{
+        event.stopPropagation();
+        popup.innerHTML = this.markersValue.find((e) => +e.station_id === +marker.dataset.stationId).info_window;
+        popup.classList.remove("d-none");
+      })
+    })
   }
 
   #addMarkersToMap() {
     this.markersValue.forEach((marker) => {
-      const popup = new mapboxgl.Popup().setHTML(marker.info_window);
-      new mapboxgl.Marker()
+      const customMarker = document.createElement("div")
+      customMarker.className = "marker"
+      customMarker.style.backgroundImage = `url('${marker.image_url}')`
+      customMarker.style.backgroundSize = "contain"
+      customMarker.style.width = "40px"
+      customMarker.style.height = "40px"
+      customMarker.dataset.stationId = marker.station_id;
+
+      new mapboxgl.Marker(customMarker)
         .setLngLat([ marker.lng, marker.lat ])
-        .setPopup(popup)
         .addTo(this.map)
     });
   }
