@@ -39,7 +39,7 @@ export default class extends Controller {
         popup.classList.add("d-none");
     })
     popup.addEventListener("click", () =>{
-      popup.style = popup.getAttribute("style") == "top: 50px;" ?  "top: 500px;" : "top: 50px;";
+      popup.style = popup.getAttribute("style") == "top: 20vh;" ?  "top: 60vh;" : "top: 20vh;";
     })
     document.querySelectorAll('.mapboxgl-marker')
     .forEach((marker)=>{
