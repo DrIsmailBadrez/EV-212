@@ -1,22 +1,89 @@
-<h2><%= station.name %></h2>
+<span id="drawer"></span>
+<div class="container text-center mt-2">
+  <div class="offcanvas-header">
+    <h2><%= station.name %></h2>
+    <a href="http://maps.apple.com/maps?q=<%=station.latitude%>,<%=station.longitude%>" target="_blank">Click here for map</a>
+    <%# <span class="badge bg-primary">Available</span> %>
+  </div>
+    <% if !station.reviews.empty? %>
+      <% note = 0 %>
+      <% station.reviews.each do |review| %>
+        <% note += review.rating  %>
+      <% end %>
+      <% average = note.fdiv((station.reviews).size) %>
+    <% end %>
+    <% if !average.nil? %>
+      <h6><% average.to_i.times do  %>
+            <i class='fa-sharp fa-solid fa-star' style="color: #ffcd3c;"></i>
+          <% end %>
+          <% (5 - average).to_i.times do %>
+            <i class='fa-regular fa-star' style="color: #ffcd3c;"></i>
+          <% end %>
+          (<%= (station.reviews).size %>)
+      </h6>
+    <% end %>
+  </div>
 <p><%= station.address %></p>
-<%= cl_image_tag station.photo.key, height: 100, width: 100, crop: :fill %>
-<br>
-<%= link_to "Leave a review", new_station_review_path(station)%>
-    <hr>
-    <h5>Chargers available:</h5>
+<div class="offcanvas-header">
     <% station.station_chargers.each do |station_charger| %>
       <li style="list-style: none"><%= image_tag(station_charger.charger.ctype+".png", style:"width:50px; height:50px")%>
-      <span style="display: inline-block; min-width: 66px;"><%= station_charger.charger.capacity %>kW<b> x <%= station_charger.charger_count %></b></span></li>
+      <span style="display: inline-block; min-width: 66px;"><%= station_charger.charger.capacity %>kW x <%= station_charger.charger_count %></span></li>
     <% end %>
-<% if !station.reviews.empty? %>
+    </div>
+<a href="https://www.google.com/maps/place/<%=station.latitude%>,<%=station.longitude%>"><button type="button" class="btn btn-primary mt-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-90deg-right" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M14.854 4.854a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 4H3.5A2.5 2.5 0 0 0 1 6.5v8a.5.5 0 0 0 1 0v-8A1.5 1.5 0 0 1 3.5 5h9.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4z"></path>
+</svg>
+Navigate</button></a>
+
+  <br>
+  <br>
+  <br>
+  <% if station.photo.key.nil? %>
+    <%= image_tag "https://doc-04-a4-mymaps.googleusercontent.com/untrusted/hostedimage/sm8qmc4gucqmtv2n8d3g746lsc/k58foeocjlvtgok8gtgveloeog/1662900235750/JHdNRxuCceXe4dzVnCmOKym7Qn5qjH34/12207485209966916948/5AFzc1vZ2vMQfAZFnbBibNGHCpCAS9gYIa1Hz-620ep9aT2bOwfg5bDiSFx2kJZksOMuEuz7bXJwlq91rTByG1DvdXHZSteYJKUJ-vi8hDsiOK7ucU9TznD56N6s8P1Dme5F9-9et7t9vxh_3fvNwIHvEELyx7f2SHVoKzoQGbQFCLV8lKsSAKaU8aOkrjrVw45T9Rkw?session=0&fife=s16383", height: 100, width: 100, crop: :fill %>
+  <% else %>
+    <%= cl_image_tag station.photo.key, height: 100, width: 100, crop: :fill %>
+  <% end %>
+    <hr>
+</div>
+      <div class="text-center">
+    <%= link_to "Leave a review", new_station_review_path(station)%>
+<br>
+    <br>
+  <button class="btn btn-primary rounded-pill" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+    See reviews
+  </button>
+  </div>
+<br>
+<br>
+<div class="collapse" id="collapseExample">
+  <div class="card-body">
+   <% if !station.reviews.empty? %>
   <% station.reviews.each do |review| %>
-    <p class="mb-0"><b>Review N°</b><%= review.id %></p>
-    <p class="mb-0"><b>Comment:</b><%= review.content %></p>
-    <p class="mb-0"><b>Rating:</b><%= review.rating %></p>
+
+
+    <i class="fas fa-quote-left pe-2"></i><%= review.content %></i>
+    <ul class="list-unstyled d-flex justify-content text-warning mb-0">
+        <li><i class="fas fa-star fa-sm"></i></li>
+        <li><i class="fas fa-star fa-sm"></i></li>
+        <li><i class="fas fa-star fa-sm"></i></li>
+        <li><i class="fas fa-star fa-sm"></i></li>
+        <li><i class="far fa-star fa-sm"></i></li>
+      </ul>
+    <%# <p class="mb-0"><b>Rating:</b><%= review.rating %>
     <% if review.photo.key? %>
       <%= cl_image_tag review.photo.key, height: 50, width: 50, crop: :fill %>
     <% end %>
     <hr>
   <% end %>
 <% end %>
+ </div>
+</div>
+
+</div>
+ <br>
+ <br>
+ <br>
+ <br>
+ <br>
+ <br>
