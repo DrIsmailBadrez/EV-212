@@ -1,26 +1,3 @@
-<<<<<<< HEAD
-<% if !station.reviews.empty? %>
-  <% note = 0 %>
-  <% station.reviews.each do |review| %>
-    <% note += review.rating  %>
-  <% end %>
-  <% average = note.fdiv((station.reviews).size) %>
-<% end %>
-<h2><a href="http://maps.apple.com/maps?q=18.551464,73.951399"></a></h2>
-<span>
-  <h2><%= station.name %></h2>
-  <% if !average.nil? %>
-    <% if average.integer? %>
-      <h6><% average.times do  %>
-            <i class='fa-sharp fa-solid fa-star' style="color: #ffcd3c;"></i>
-          <% end %>
-          <% (5 - average).times do %>
-            <i class='fa-regular fa-star' style="color: #ffcd3c;"></i>
-          <% end %>
-          (<%= (station.reviews).size %>)
-      </h6>
-    <% else %>
-=======
 <span id="drawer"></span>
 <div class="container text-center mt-2">
   <div class="offcanvas-header">
@@ -36,7 +13,6 @@
       <% average = note.fdiv((station.reviews).size) %>
     <% end %>
     <% if !average.nil? %>
->>>>>>> master
       <h6><% average.to_i.times do  %>
             <i class='fa-sharp fa-solid fa-star' style="color: #ffcd3c;"></i>
           <% end %>
@@ -48,17 +24,7 @@
     <% end %>
   </div>
 <p><%= station.address %></p>
-<<<<<<< HEAD
-<%= cl_image_tag station.photo.key, height: 100, width: 100, crop: :fill %>
-<br>
-<a href="http://maps.apple.com/maps?q=<%=station.latitude%>,<%=station.longitude%>" target="_blank">Click here for map</a>
-<%= link_to "Leave a review", new_station_review_path(station)%>
-<%= link_to "See all reviews", station_reviews_path(station)%>
-    <hr>
-    <h5>Chargers available:</h5>
-=======
 <div class="offcanvas-header">
->>>>>>> master
     <% station.station_chargers.each do |station_charger| %>
       <li style="list-style: none"><%= image_tag(station_charger.charger.ctype+".png", style:"width:50px; height:50px")%>
       <span style="display: inline-block; min-width: 66px;"><%= station_charger.charger.capacity %>kW x <%= station_charger.charger_count %></span></li>
@@ -70,9 +36,6 @@
 </svg>
 Navigate</button></a>
 
-<<<<<<< HEAD
-<% if !station.reviews.empty? %>
-=======
   <br>
   <br>
   <br>
@@ -96,7 +59,6 @@ Navigate</button></a>
 <div class="collapse" id="collapseExample">
   <div class="card-body">
    <% if !station.reviews.empty? %>
->>>>>>> master
   <% station.reviews.each do |review| %>
 
 
