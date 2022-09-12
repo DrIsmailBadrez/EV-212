@@ -1,11 +1,8 @@
 <div class="container text-center p-4">
-  <h1 class="m-5" >Add a new station</h1>
-
-  <%= render "form", station: @station %>
-
-  <br>
-
-  <div>
-    <%= link_to "Back to map", stations_path %>
+  <div class="offcanvas-header">
+    <h5 id="offcanvasRightLabel">Add a new station</h5>
+    <a href="/stations"><button type="button" class="btn-close text-reset" aria-label="Close"></button></a>
   </div>
+<img src="https://i.ibb.co/Zzrx6V8/728-generated.jpg"  alt="EV-212" width="280px" height="280px"></a>
+  <%= render "form", station: @station %>
 </div>

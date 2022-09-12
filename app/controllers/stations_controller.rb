@@ -8,7 +8,11 @@ class StationsController < ApplicationController
       {
         lat: station.latitude,
         lng: station.longitude,
-        info_window: render_to_string(partial: "info_window", locals: { station: station })
+        info_window: render_to_string(partial: "info_window", locals: { station: station }),
+        station_id: station.id,
+        image_url:  station.chargers.pluck(:ctype).include?("CHADEMO") || station.chargers.pluck(:ctype).include?("CCS") ?
+          helpers.asset_url("fast-marker.svg") :
+          helpers.asset_url("marker.svg")
       }
     end
   end
