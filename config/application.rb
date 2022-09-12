@@ -8,6 +8,7 @@ Bundler.require(*Rails.groups)
 
 module Ev212
   class Application < Rails::Application
+    config.exceptions_app = self.routes
     config.generators do |generate|
       generate.assets false
       generate.helper false
