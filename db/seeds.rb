@@ -23,12 +23,12 @@ c6 = Charger.create(ctype: "Type 2", capacity: "7 kW", tethered: false)
 c7 = Charger.create(ctype: "Type 2", capacity: "22 kW")
 c8 = Charger.create(ctype: "Type 2", capacity: "22 kW", tethered: false)
 
-c9 = Charger.create(ctype: "Combined charging system (CCS)", capacity: "50 kW")
-c10 = Charger.create(ctype: "Combined charging system (CCS)", capacity: "150 kW")
-c11 = Charger.create(ctype: "Combined charging system (CCS)", capacity: "350 kW")
+c9 = Charger.create(ctype: "CCS", capacity: "50 kW")
+c10 = Charger.create(ctype: "CCS", capacity: "150 kW")
+c11 = Charger.create(ctype: "CCS", capacity: "350 kW")
 
-c12 = Charger.create(ctype: "CHAdeMO", capacity: "50 kW")
-c13 = Charger.create(ctype: "CHAdeMO", capacity: "100 kW")
+c12 = Charger.create(ctype: "CHADEMO", capacity: "50 kW")
+c13 = Charger.create(ctype: "CHADEMO", capacity: "100 kW")
 
 c14 = Charger.create(ctype: "Type E", capacity: "2.3 kW")
 c15 = Charger.create(ctype: "Type E", capacity: "3.7 kW")
