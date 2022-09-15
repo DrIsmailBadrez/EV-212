@@ -17,6 +17,11 @@ export default class extends Controller {
       center: [-7.6475557,33.582312],
       zoom: 11
     })
+    mapboxgl.setRTLTextPlugin(
+      'https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-rtl-text/v0.2.3/mapbox-gl-rtl-text.js',
+      null,
+      true // Lazy load the plugin
+      );
     this.#addMarkersToMap()
     // this.#fitMapToMarkers()
     this.map.addControl(new MapboxGeocoder({ accessToken: mapboxgl.accessToken,
@@ -39,7 +44,7 @@ export default class extends Controller {
         popup.classList.add("d-none");
     })
     popup.addEventListener("click", () =>{
-      popup.style = popup.getAttribute("style") == "top: 50px;" ?  "top: 500px;" : "top: 50px;";
+      popup.style = popup.getAttribute("style") == "top: 20vh;" ?  "top: 60vh;" : "top: 20vh;";
     })
     document.querySelectorAll('.mapboxgl-marker')
     .forEach((marker)=>{

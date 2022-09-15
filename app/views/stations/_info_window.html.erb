@@ -3,82 +3,44 @@
   <div class="offcanvas-header">
     <h5 class="m-2"><b><%= station.name.capitalize %></b></h5>
 
+    <button type="button" class="btn btn-primary rounded-pill go" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-sign-turn-right-fill" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M9.05.435c-.58-.58-1.52-.58-2.1 0L.436 6.95c-.58.58-.58 1.519 0 2.098l6.516 6.516c.58.58 1.519.58 2.098 0l6.516-6.516c.58-.58.58-1.519 0-2.098L9.05.435ZM9 8.466V7H7.5A1.5 1.5 0 0 0 6 8.5V11H5V8.5A2.5 2.5 0 0 1 7.5 6H9V4.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L9.41 8.658A.25.25 0 0 1 9 8.466Z"></path>
+      </svg>
+        Go
+    </button>
 
 
 
-
-
-<button type="button" class="btn btn-primary rounded-pill go" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">
-  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-sign-turn-right-fill" viewBox="0 0 16 16">
-    <path fill-rule="evenodd" d="M9.05.435c-.58-.58-1.52-.58-2.1 0L.436 6.95c-.58.58-.58 1.519 0 2.098l6.516 6.516c.58.58 1.519.58 2.098 0l6.516-6.516c.58-.58.58-1.519 0-2.098L9.05.435ZM9 8.466V7H7.5A1.5 1.5 0 0 0 6 8.5V11H5V8.5A2.5 2.5 0 0 1 7.5 6H9V4.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L9.41 8.658A.25.25 0 0 1 9 8.466Z"></path>
-  </svg>
-    Go
-</button>
-
-
-
-
-
-
-
-
-<div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel">
-  <div class="offcanvas-header">
-    <h5 class="offcanvas-title" id="offcanvasBottomLabel">Navigate</h5>
-    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-  </div>
-  <div class="offcanvas-body small">
+    <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasBottomLabel">Navigate</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+    <div class="offcanvas-body small">
 
 
 
 
 
 
+    <div style="margin: 0 auto; display: block; text-align: center; rounded ">
+      <a href="http://maps.apple.com/maps?q=<%=station.latitude%>,<%=station.longitude%>"><img src="https://www.apple.com/v/maps/d/images/overview/intro_icon__dfyvjc1ohbcm_large.png" width="75" height="75"
+      alt="" style="margin: 8px;"></a>
 
 
+      <a href="https://www.google.com/maps/place/<%=station.latitude%>,<%=station.longitude%>"><img src="https://i0.wp.com/originalapk.com/wp-content/uploads/2019/12/Google-Maps-Icon-Original-APK.png?fit=300%2C300&ssl=1" width="75" height="75" alt=""></a>
+
+      <a href="https://waze.com/ul?q=<%=station.latitude%>,<%=station.longitude%>"><img src="https://www.digital-make-it.com/uploaded/136550/waze11-modifier-9343789100488398.png" width="80" height="80" alt=""></a>
+
+    </div>
 
 
+    </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-<div style="margin: 0 auto; display: block; text-align: center; rounded ">
-  <a href="http://maps.apple.com/maps?q=<%=station.latitude%>,<%=station.longitude%>"><img src="https://www.apple.com/v/maps/d/images/overview/intro_icon__dfyvjc1ohbcm_large.png" width="75" height="75"
-  alt="" style="margin: 8px;"></a>
-
-
-  <a href="https://www.google.com/maps/place/<%=station.latitude%>,<%=station.longitude%>"><img src="https://i0.wp.com/originalapk.com/wp-content/uploads/2019/12/Google-Maps-Icon-Original-APK.png?fit=300%2C300&ssl=1" width="75" height="75" alt=""></a>
-
-  <a href="https://waze.com/ul?q=<%=station.latitude%>,<%=station.longitude%>"><img src="https://www.digital-make-it.com/uploaded/136550/waze11-modifier-9343789100488398.png" width="80" height="80" alt=""></a>
-
-</div>
-
-
-</div>
-
-
-
-
-
-
-  </div>
-</div>
-
-
-
-
-
-
+      </div>
+    </div>
 
 
 
@@ -128,7 +90,6 @@
           </li>
     <% end %>
     </div>
-
 
   <br>
   <br>

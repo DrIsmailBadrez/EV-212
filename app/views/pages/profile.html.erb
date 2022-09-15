@@ -1,136 +1,195 @@
 <div class="container text-center p-4">
-<div class="offcanvas-header">
-    <h5 id="offcanvasRightLabel"></h5>
-    <a href="/stations"><button type="button" class="btn-close text-reset" aria-label="Close"></button></a>
-  </div>
-  <div class="logo-profile">
-    <a href="/"><img src="https://i.ibb.co/6HhrhNq/logo-EV-212.png"  alt="EV-212" width="270px" height="162px"></a>
-  </div>
-  <div class="text-center">
-    <img class= "pic-profile" src="https://wikibio.in/wp-content/uploads/2021/12/Hasbulla.jpg"  alt="profile-pic" width="150px" height="150px">
-  </div>
-  <h3 class="mt-3 text-center"><b><%=current_user.email%></b></h3>
-  <div class="text-center mt-1">
-    <div>
-<div>
-<button class="mt-3 btn btn-outline-primary btn-lg btn-block w-50" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">My Profil</button>
-
-<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
   <div class="offcanvas-header">
-    <h5 class="offcanvas-title" id="offcanvasExampleLabel">Edit</h5>
-    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-  </div>
-  <div class="offcanvas-body">
-<%= render "devise/registrations/edit",resource_name: current_user,resource: current_user, devise_mapping: current_user %>
-
-
-
-
+      <h5 id="offcanvasRightLabel"></h5>
+      <a href="/stations"><button type="button" class="btn-close text-reset" aria-label="Close"></button></a>
     </div>
+    <div class="logo-profile">
+      <a href="/stations"><img src="https://i.ibb.co/6HhrhNq/logo-EV-212.png"  alt="EV-212" width="270px" height="162px"></a>
     </div>
-</div>
-
-
-<button class="mt-3 btn btn-outline-primary btn-lg btn-block w-50" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Contact</button>
-
-<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-  <div class="offcanvas-header">
-    <h5 id="offcanvasRightLabel">Contact</h5>
-    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-  </div>
-  <div class="text-center">
-    <img src="https://i.ibb.co/MCmhNZd/725-generated.jpg"  alt="EV-212" width="280px" height="280px"></a>
+    <div class="text-center">
+      <% if current_user.photo.key.nil? %>
+        <img class= "pic-profile" src="https://wikibio.in/wp-content/uploads/2021/12/Hasbulla.jpg"  alt="profile-pic" width="150px" height="150px">
+      <% else %>
+        <%= cl_image_tag current_user.photo.key, height: 150, width: 150, crop: :fill, class: "pic-profile" %>
+      <% end %>
     </div>
-  <div class="offcanvas-body">
-  <div class="container text-center p-4">
-<form class="simple_form contact_us p-1" accept-charset="UTF-8" method="post">
-    <div class="form-inputs">
-      <div class="mb-3"><label class="form-label string optional"></label><input class="form-control string optional bg-white" type="text" name="offer[title]" id="offer_title" placeholder="Name"></div>
-      <div class="mb-3"><label class="form-label string optional"></label><input class="form-control string optional bg-white " type="text" id="offer_description" placeholder="Email"></div>
-      <div class="mb-3"><label class="form-label text optional"></label><textarea class="form-control text optional bg-white " type="text" placeholder="Messag"></textarea></div>
+    <h3 class="mt-3 text-center"><b><%=current_user.email%></b></h3>
+    <div class="text-center mt-1">
+      <div>
+  <div>
+  <button class="mt-3 btn btn-outline-primary btn-lg btn-block w-50" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">My Profile</button>
 
+  <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasExampleLabel">Edit my infos</h5>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+  <%= render "devise/registrations/edit",resource_name: current_user,resource: current_user, devise_mapping: current_user %>
 
-</form>
-
-
-      <div class="text-center">
-
-        <input type="submit" name="commit" value="Submit" class="mt-3 btn btn-primary text-align-center rounded-pill w-50" data-disable-with="Create offer">
       </div>
+      </div>
+  </div>
+
+
+  <button class="mt-3 btn btn-outline-primary btn-lg btn-block w-50" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Contact</button>
+
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+    <div class="offcanvas-header">
+      <h5 id="offcanvasRightLabel">Contact us</h5>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
+    <div class="text-center">
+      <img src="https://i.ibb.co/MCmhNZd/725-generated.jpg"  alt="EV-212" width="280px" height="280px"></a>
+      </div>
+    <div class="offcanvas-body">
+    <div class="container text-center p-4">
+  <form class="simple_form contact_us p-1" accept-charset="UTF-8" method="post" action="mail/send">
+      <div class="form-inputs">
+        <div class="mb-3"><label class="form-label string optional"></label><input class="form-control string optional bg-white" type="text" name="contact[name]" id="contact_name" placeholder="Name"></div>
+        <div class="mb-3"><label class="form-label string optional"></label><input class="form-control string optional bg-white " type="text" name="contact[email]" id="contact_email" placeholder="Email"></div>
+        <div class="mb-3"><label class="form-label text optional"></label><textarea class="form-control text optional bg-white " type="text"  name="contact[message]" placeholder="Message"></textarea></div>
+
+
   </form>
-  </div>
-  </div>
-</div>
-</div>
 
-  <button class="mt-3 btn btn-outline-primary btn-lg btn-block w-50" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasLeft" aria-controls="offcanvasLeft">FAQ</button>
 
-<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasLeft" aria-labelledby="offcanvasLeftLabel">
+        <div class="text-center">
 
-  <div class="offcanvas-header">
-    <h5 id="offcanvasLeftLabel">FAQ</h5>
-    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-
-  </div>
-  <div class="text-center">
-    <img src="https://i.ibb.co/DMHmj4w/724-generated.jpg"  alt="EV-212" width="280px" height="280px"></a>
+          <input type="submit" name="commit" value="Submit" class="mt-3 btn btn-primary text-align-center rounded-pill w-50" data-disable-with="Create contact">
+        </div>
+      </div>
+    </form>
     </div>
-  <div class="offcanvas-body">
-   <div class="accordion" id="accordionExample">
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="headingOne">
-      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-        <strong>How can I add a charging station?</strong>
-      </button>
-    </h2>
-    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-      <div class="accordion-body">
-        You can add a charging station by clicking on the "add a charging station" button on the menu bar.
+    </div>
+  </div>
+  </div>
+
+    <button class="mt-3 btn btn-outline-primary btn-lg btn-block w-50" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasLeft" aria-controls="offcanvasLeft">FAQ</button>
+
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasLeft" aria-labelledby="offcanvasLeftLabel">
+
+    <div class="offcanvas-header">
+      <h5 id="offcanvasLeftLabel"></h5>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+
+    </div>
+    <div class="text-center">
+      <img src="https://i.ibb.co/DMHmj4w/724-generated.jpg"  alt="EV-212" width="280px" height="280px"></a>
+      </div>
+    <div class="offcanvas-body">
+    <div class="accordion" id="accordionExample">
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingOne">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          <strong>How can I add a charging station?</strong>
+        </button>
+      </h2>
+      <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+          You can add a charging station by clicking on the « + » button on the menu bar.
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingTwo">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          <strong>There are some missing informations on a station...</strong>
+        </button>
+      </h2>
+      <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+          Please don't hesitate to send us the missing informations via the <em>contact us</em> page on your profile.      </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingThree">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          <strong>I would like to signal an out of service charging station.</strong>
+        </button>
+      </h2>
+      <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+          Please don't hesitate to send us an enquiry via the <em>contact us</em> page on your profile.
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingFor">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFor" aria-expanded="true" aria-controls="collapseFor">
+          <strong>How can I look for a specific location?</strong>
+        </button>
+      </h2>
+      <div id="collapseFor" class="accordion-collapse collapse" aria-labelledby="headingFor" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+          Just enter the address or the coordinates of the place on the search bar. Moreover, if you want to find a nearby charging station, you can just use the « Locate me » button.
+        </div>
       </div>
     </div>
   </div>
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="headingTwo">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-        <strong>There are some missing informations on a station.</strong>
-      </button>
-    </h2>
-    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-      <div class="accordion-body">
-        If there are some missing informations on a charging station, please don’t hesitate to send us an enquiry by going on your profile from the menu bar and enter the contact us page.
-      </div>
     </div>
   </div>
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="headingThree">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-        <strong>I would like to signal a missing charging station.</strong>
-      </button>
-    </h2>
-    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-      <div class="accordion-body">
-        If you would like to signal a missing charging station, please don’t hesitate to send us an enquiry by going on your profile from the menu bar and enter the contact us page.
-      </div>
-    </div>
-  </div>
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="headingFor">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFor" aria-expanded="true" aria-controls="collapseFor">
-        <strong>How can I look for a specific location?</strong>
-      </button>
-    </h2>
-    <div id="collapseFor" class="accordion-collapse collapse" aria-labelledby="headingFor" data-bs-parent="#accordionExample">
-      <div class="accordion-body">
-        <p>When you would like to look for a specific location, just enter the address or the coordinates of the place on the search bar. Moreover, if you want to find a nearby charging station, you can manually plug your address on the search bar or click on the button next to the search bar and that will find your current position.</p>
-      </div>
-    </div>
-  </div>
-</div>
-  </div>
-</div>
-  <div class="text-center">
 
-    <a href="/users/sign_out" data-turbo-method="delete" class="mt-3 btn btn-outline-danger btn-lg btn-block w-50">Log out</a>
+
+  <button class="mt-3 btn btn-outline-primary btn-lg btn-block w-50" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasAbout" aria-controls="offcanvasAbout">About</button>
+
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasAbout" aria-labelledby="offcanvasAboutLabel" style="overflow: scroll;">
+    <div class="container text-center p-4">
+      <div class="offcanvas-header">
+        <h5 id="offcanvasAboutLabel"></h5>
+        <a href="/stations"><button type="button" class="btn-close text-reset" aria-label="Close"></button></a>
+      </div>
+
+      <div class="logo-profile">
+        <a href="/"><img src="https://i.ibb.co/6HhrhNq/logo-EV-212.png"  alt="EV-212" width="135px" height="81px"></a>
+      </div>
+      <div class="text-center m-3 text-primary border-bottom border-primary opacity-75" style="letter-spacing: 7px" >
+        <h1>OUR  STORY</h1>
+      </div>
+      <div class=" m-2 text-primary opacity-75" style="text-align:justify">
+        <p>Someday, Amine decided to take a roadtrip to Casablanca 🇲🇦 from Bordeaux 🇫🇷 using his <b>ELECTRIC </b>car 🥵...<br>
+        On his way, he had trouble finding charging stations in Morocco.<br>
+        On his arrival, he met Driss & Ismail. The rest is EV212...</p>
+      </div>
+
+      <div class="founders rounded-4" style="background-color:#5793FE">
+        <div class="founder pt-3">
+          <div class="text-center">
+              <img class= "pic-profile" src="https://avatars.githubusercontent.com/u/108731873?v=4"  alt="profile-pic" width="100px" height="100px">
+          </div>
+          <h3 class="mt-3 text-center text-white"><b>AMINE</b></h3>
+          <div class="text-center m-3 text-white border-bottom border-white" >
+            <h6>Family man, Father of 4, Entrepreneur and Environmentalist, Passionate about new technologies.</h6>
+          </div>
+        </div>
+
+        <div class="founder">
+          <div class="text-center mt-3">
+              <img class= "pic-profile" src="https://i.ibb.co/gDYsNzz/Screen-Shot-2022-08-20-at-19-40-38.png"  alt="profile-pic" width="100px" height="100px">
+          </div>
+          <h3 class="mt-3 text-center text-white"><b>ISMAIL</b></h3>
+          <div class="text-center m-3 text-white border-bottom border-white" >
+            <h6>Oral & Dental Surgeon, Entrepreneur and Polyglot. A Problem-solver in heart, in his free-time he's learning something new.</h6>
+          </div>
+        </div>
+
+        <div class="founder pb-2">
+          <div class="text-center mt-3">
+              <img class= "pic-profile" src="https://avatars.githubusercontent.com/u/109488043?v=4"  alt="profile-pic" width="100px" height="100px">
+          </div>
+          <h3 class="mt-3 text-center text-white"><b>DRISS</b></h3>
+          <div class="text-center m-3 text-white" >
+            <h6>Mechanical Engineer in the making, Multilingual and passionate about travelling.</h6>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+
+    <div class="text-center">
+      <a href="/users/sign_out" data-turbo-method="delete" class="mt-3 btn btn-outline-danger btn-lg btn-block w-50">Log out</a>
+    </div>
+
 </div>
+
+  </div>
