@@ -52,8 +52,18 @@ export default class extends Controller {
         event.stopPropagation();
         popup.innerHTML = this.markersValue.find((e) => +e.station_id === +marker.dataset.stationId).info_window;
         popup.classList.remove("d-none");
+        document.getElementById("showReviews").addEventListener("click", (e)=> {
+          e.stopPropagation();
+          console.log(e.target.innerText)
+          e.target.innerText = e.target.innerText == "Hide reviews" ? "See reviews"  : "Hide reviews";
+        })
       })
     })
+
+    // navbar hiding code
+    document.querySelector(".mymap").addEventListener("click", () =>{
+      document.getElementById("open").checked = false;
+    });
   }
 
   #addMarkersToMap() {

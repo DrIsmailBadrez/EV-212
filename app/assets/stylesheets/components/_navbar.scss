@@ -1,20 +1,72 @@
+.main-wrapper{
+  position: relative;
+  #open {
+    display: none;
+  }
+
+  #open-nav .fa-bars {
+    opacity: 1;
+    transition: all 0.3s ease-out;
+  }
+
+  #open:checked + .navbar-lewagon{
+    background-color: $primary;
+    left: 10% !important;
+    width: 80vw;
+    #open-nav .fa-bars {
+      opacity: 0;
+    }
+    a>.fa-map-location-dot, a>.fa-user, a>.fa-plus{
+      opacity: 1;
+      color: white !important;
+      font-size: 2em;
+    }
+  }
+
+  #open-nav {
+    position: absolute;
+    z-index: 99;
+    right: 4px;
+    i {
+      color: $primary;
+      font-size: 2em;
+    }
+  }
+}
+
+
 .navbar-lewagon {
+  position: fixed;
+  bottom: 24px;
+  height: 64px;
+  width: 64px;
+  background-color: $primary;
   justify-content: space-between;
-  background: white;
+  left: 42% !important;
+  right: 34px;
+  border-radius: 32px;
+  transition: width .5s ease-in-out, left .5s ease-in-out;
+  .icon-wrapper{
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 16px;
+    margin-right: 6px;
+    a>.fa-map-location-dot, a>.fa-user, a>.fa-plus{
+      opacity: 0;
+      transition: opacity .3s ease-in-out;
+    }
+
+    div {
+      margin: 0 8px;
+      i {
+        color: white !important;
+        font-size: 2em;
+      }
+    }
+  }
 }
 
-.navbar-lewagon .navbar-collapse {
-  flex-grow: 0;
-}
 
-.navbar-lewagon .navbar-brand img {
-  width: 40px;
-}
 
-.navbar-nav i:active {
-  color: rgba(0, 0, 0, 0.5);
-}
 
-.navbar-nav i:hover {
-  color: rgba(0, 0, 0, 0.5);
-}

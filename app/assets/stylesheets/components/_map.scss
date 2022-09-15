@@ -9,12 +9,20 @@
 
 .mapboxgl-ctrl-geocoder {
   right: 13%;
+  border-radius: 15px;
+  width: 280px;
+right: 20%;
+  top: 8px;
 }
 
 .mapboxgl-ctrl-group {
   position: absolute;
-  top: 10px;
-  left: 88%;
+  background-color: rgba(255, 255, 255, 0);
+  top: 13px;
+  left: 85%;
+
+  border-radius: 30px;
+
 }
 
 .mapboxgl-popup-content{
@@ -35,13 +43,15 @@
 
 #popup {
   width: 100vw;
-  height: 100vh;
+  height: 1000px;
   position: absolute;
   top: 20vh;
   background-color: white;
   padding: 16px;
   padding-top: 32px;
   transition: all 1s;
+  border-radius: 25px;
+  z-index: 99;
 }
 
 #drawer{
@@ -55,4 +65,26 @@
 
 .mapboxgl-ctrl-bottom-left, .mapboxgl-ctrl-bottom-right{
   display: none;
+}
+
+.support{
+  position: fixed;
+
+	right: 10px;
+	bottom: 10px;
+	padding: 10px;
+	display: flex;
+	a{
+		margin: 0 10px;
+		color: #333333;
+		font-size: 1.8rem;
+		backface-visibility: hidden;
+		transition: all 150ms ease;
+		&:hover{
+			transform: scale(1.1);
+		}
+	}
+}
+.go{
+  min-width: 72px;
 }
