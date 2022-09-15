@@ -17,11 +17,17 @@ export default class extends Controller {
       center: [-7.6475557,33.582312],
       zoom: 11
     })
-    mapboxgl.setRTLTextPlugin(
-      'https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-rtl-text/v0.2.3/mapbox-gl-rtl-text.js',
-      null,
-      true // Lazy load the plugin
-      );
+
+    try{
+      mapboxgl.setRTLTextPlugin(
+        'https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-rtl-text/v0.2.3/mapbox-gl-rtl-text.js',
+        null,
+        true // Lazy load the plugin
+        );
+    }catch(e){
+        console.log(e)
+    }
+
     this.#addMarkersToMap()
     // this.#fitMapToMarkers()
     this.map.addControl(new MapboxGeocoder({ accessToken: mapboxgl.accessToken,
@@ -64,6 +70,8 @@ export default class extends Controller {
     document.querySelector(".mymap").addEventListener("click", () =>{
       document.getElementById("open").checked = false;
     });
+
+
   }
 
   #addMarkersToMap() {

@@ -65,6 +65,11 @@
     <% end %>
   </div>
 <p><%= station.address %></p>
+  <% if station.photo.key.nil? %>
+    <%= image_tag "https://doc-04-a4-mymaps.googleusercontent.com/untrusted/hostedimage/sm8qmc4gucqmtv2n8d3g746lsc/k58foeocjlvtgok8gtgveloeog/1662900235750/JHdNRxuCceXe4dzVnCmOKym7Qn5qjH34/12207485209966916948/5AFzc1vZ2vMQfAZFnbBibNGHCpCAS9gYIa1Hz-620ep9aT2bOwfg5bDiSFx2kJZksOMuEuz7bXJwlq91rTByG1DvdXHZSteYJKUJ-vi8hDsiOK7ucU9TznD56N6s8P1Dme5F9-9et7t9vxh_3fvNwIHvEELyx7f2SHVoKzoQGbQFCLV8lKsSAKaU8aOkrjrVw45T9Rkw?session=0&fife=s16383", height: 200, width: 350, crop: :fill %>
+  <% else %>
+    <%= cl_image_tag station.photo.key, height: 200, width: 350,crop: :fill, class: "mb-4" %>
+  <% end %>
 <div class="d-flex justify-content-around align-items-center text-center">
     <% station.station_chargers.each do |station_charger| %>
       <li style="list-style: none">
@@ -90,15 +95,6 @@
           </li>
     <% end %>
     </div>
-
-  <br>
-  <br>
-  <br>
-  <% if station.photo.key.nil? %>
-    <%= image_tag "https://doc-04-a4-mymaps.googleusercontent.com/untrusted/hostedimage/sm8qmc4gucqmtv2n8d3g746lsc/k58foeocjlvtgok8gtgveloeog/1662900235750/JHdNRxuCceXe4dzVnCmOKym7Qn5qjH34/12207485209966916948/5AFzc1vZ2vMQfAZFnbBibNGHCpCAS9gYIa1Hz-620ep9aT2bOwfg5bDiSFx2kJZksOMuEuz7bXJwlq91rTByG1DvdXHZSteYJKUJ-vi8hDsiOK7ucU9TznD56N6s8P1Dme5F9-9et7t9vxh_3fvNwIHvEELyx7f2SHVoKzoQGbQFCLV8lKsSAKaU8aOkrjrVw45T9Rkw?session=0&fife=s16383", height: 200, width: 350, crop: :fill %>
-  <% else %>
-    <%= cl_image_tag station.photo.key, height: 200, width: 350,crop: :fill %>
-  <% end %>
     <hr>
 </div>
       <div class="text-center">
