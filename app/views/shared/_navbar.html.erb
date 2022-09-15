@@ -1,18 +1,24 @@
-<div class="fixed-bottom navbar navbar-expand-sm navbar-light navbar-lewagon col-xs-12 rounded-pill m-3 bg-primary">
-  <div class="container-fluid">
-    <div class="row w-100 m-auto">
-        <ul class="navbar-nav list-group list-group-horizontal m-auto d-flex justify-content-around">
-          <div class="nav-item display-6">
-            <a class="nav-link text-white" href="/stations"><i class="fa-solid fa-map-location-dot"></i></a>
-          </div>
-          <div class="nav-item display-6">
-            <a class="nav-link text-white" href="<%= new_station_path %>"><i class="fa-solid fa-plus" style="font-size:1.1em;"></i></a>
-          </div>
-          <div class="nav-item display-6">
-            <a class="nav-link text-white" href="/profile"><i class="fa-solid fa-user"></i></a>
-          </div>
-        </ul>
-        </div>
+<div class="main-wrapper">
+
+
+  <input type="checkbox" name="open" id="open">
+
+  <div class="navbar-lewagon">
+    <div class="icon-wrapper">
+      <div>
+        <a  href="/stations"><i class="fa-solid fa-map-location-dot"></i></a>
+      </div>
+      <div id="open-nav">
+        <label for="open"> <i class="fa-solid fa-bars"></i></label>
+      </div>
+      <div>
+        <a href="<%= new_station_path %>"><i class="fa-solid fa-plus" ></i></a>
+      </div>
+      <div>
+        <a href="/profile"><i class="fa-solid fa-user"></i></a>
+      </div>
     </div>
   </div>
+
 </div>
+
